@@ -1,5 +1,5 @@
 /* stylelint-disable */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -120,8 +120,8 @@
     -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
     letter-spacing: -0.02em;
   }
   * { scrollbar-width: thin; scrollbar-color: hsl(var(--border)) transparent; }
@@ -173,6 +173,67 @@
     border-color: hsl(var(--primary) / 0.5);
     transform: translateY(-2px);
   }
+
+  /* Technical/mono text — SKU, specs, timestamps, live status */
+  .font-mono-brand {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Uppercase mono brand label above product titles (e.g. HIKVISION) */
+  .brand-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    color: hsl(var(--muted-foreground));
+    text-transform: uppercase;
+  }
+
+  /* Pulsing "live" indicator dot — used for in-stock/live badges */
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: hsl(var(--primary));
+    box-shadow: 0 0 0 0 hsl(var(--primary) / 0.55);
+    animation: status-pulse 1.8s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes status-pulse {
+    0% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.5); }
+    70% { box-shadow: 0 0 0 7px hsl(var(--primary) / 0); }
+    100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0); }
+  }
+
+  /* Camera-reticle corner brackets — signature framing for hero/product visuals */
+  .reticle {
+    position: relative;
+  }
+  .reticle::before,
+  .reticle::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: hsl(var(--primary));
+    border-style: solid;
+    pointer-events: none;
+    z-index: 10;
+  }
+  .reticle::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+  .reticle::after { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+  .reticle .reticle-bottom::before,
+  .reticle .reticle-bottom::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: hsl(var(--primary));
+    border-style: solid;
+    pointer-events: none;
+    z-index: 10;
+  }
+  .reticle .reticle-bottom::before { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+  .reticle .reticle-bottom::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
 
   /* Gradient text */
   .gradient-text {
